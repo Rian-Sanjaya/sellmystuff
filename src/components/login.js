@@ -1,3 +1,6 @@
+// when logged in navigation link should change (no login and signup link)
+// also when typing url to /login or /signup is not allowed (should redirect to other page)
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import auth from './auth';
