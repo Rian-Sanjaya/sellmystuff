@@ -35,31 +35,31 @@ function PrivateRoute({ component: Component, ...rest }) {
 
 class App extends Component {
   render() {
-    let list = 
-      <React.Fragment>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/signup">Sign Up</Link></li>
-      </React.Fragment>;
+    // let list = 
+    //   <React.Fragment>
+    //     <li><Link to="/login">Login</Link></li>
+    //     <li><Link to="/signup">Sign Up</Link></li>
+    //   </React.Fragment>;
 
-      if (auth.isAuthenticated) {
-        list = 
-          <React.Fragment>
-            <li><Link to="/allStuff">All Stuff</Link></li>
-            <li><Link to="/sellAThing">Sell A Thing</Link></li>
-            <li><Link to="/logout">Log Out</Link></li> 
-            {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
-          </React.Fragment>
-      }
+    //   if (auth.isAuthenticated) {
+    //     list = 
+    //       <React.Fragment>
+    //         <li><Link to="/allStuff">All Stuff</Link></li>
+    //         <li><Link to="/sellAThing">Sell A Thing</Link></li>
+    //         <li><Link to="/logout">Log Out</Link></li> 
+    //         {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
+    //       </React.Fragment>
+    //   }
 
     return (
       <Router>
         <div>
-          <nav>
+          {/* <nav>
             <ul>
               <li><Link to="/">Home</Link></li>
               {list}
             </ul>
-          </nav>
+          </nav> */}
 
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />

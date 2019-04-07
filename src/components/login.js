@@ -4,6 +4,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import auth from './auth';
+import Navigation from './navigation';
 
 class Login extends React.Component {
   state = { redirectToReferrer: false };
@@ -28,6 +29,7 @@ class Login extends React.Component {
 
     return (
       <div>
+        <Navigation />
         <h2>Login</h2>
         <button 
           onClick={
