@@ -4,29 +4,63 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
+
 import Navigation from './navigation';
-import { checkLogin } from '../actions/authActions';
+import { loginSuccess } from '../actions/authActions';
 import { saveAuth } from '../helper/localStorage';
+
+const RESET_VALUES = { email: '', password: '' };
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      redirectToReferrer: false 
+      redirectToReferrer: false ,
+      loginData: Object.assign({}, RESET_VALUES),
+      error: ''
     };
 
-    this.login = this.login.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  login() {
+  handleChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState(( prevState ) => {
+      prevState.loginData[name] = value;
+      return { loginData: prevState.loginData };
+    });
+  }
+
+  handleLogin(e) {
     // auth.authenticate(() => {
     //   this.setState({ redirectToReferrer: true });
     //   // console.log("loged in");
     // });
 
-    saveAuth();
-    this.props.checkLogin();
+    e.preventDefault();
+
+    const { email, password } = this.state.loginData;
+    const data = {
+      email: email,
+      password: password
+    }
+    // console.log("isi data: ", data);
+
+    axios.post("http://localhost:3000/api/auth/login", data)
+    .then( res => {
+      if (res.status && res.status === 200) {
+        // console.log(res);
+        saveAuth(res.data);
+        this.props.loginSuccess();
+      }
+    })
+    .catch( err => console.log(err) );
   }
 
   render() {
@@ -45,17 +79,41 @@ class Login extends React.Component {
       <div>
         <Navigation />
         <h2>Login</h2>
-        {/* <button 
-          onClick={
-            () => {
-              auth.isAuthenticated = true;
-              this.props.history.push("/allStuff");
-            }
-          }
-        > */}
-        <button onClick={this.login}>
+        <form>
+          <label>
+            <span className="login-label">Email address</span>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Enter your email address" 
+              value={this.state.loginData.email} 
+              onChange={this.handleChange} 
+              required 
+            />
+          </label>
+          <br />
+          <label>
+            <span className="login-label">Password</span>
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Enter your password"
+              value={this.state.loginData.password}
+              onChange={this.handleChange} 
+              required 
+            />
+          </label>
+          <br />
+          <input 
+            className="login-button" 
+            type="submit" 
+            value="Login" 
+            onClick={this.handleLogin} 
+          />
+        </form>
+        {/* <button onClick={this.login}>
           Login
-        </button>
+        </button> */}
       </div>
     );
   }
@@ -69,7 +127,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapActionsToProps = {
-  checkLogin: checkLogin
+  loginSuccess: loginSuccess
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Login);

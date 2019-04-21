@@ -1,4 +1,4 @@
-export const checkLogin = () => {
+export const loginSuccess = () => {
   return dispatch => {
     dispatch({
       type: 'LOGIN_SUCCESS',

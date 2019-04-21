@@ -12,9 +12,9 @@ export const loadAuth = () => {
   }
 };
 
-export const saveAuth = () => {
+export const saveAuth = (val) => {
   try {
-    const state = { shazam_: 'abc' };
+    const state = val;
     const serializedState = JSON.stringify(state);
     localStorage.setItem('@shazam', serializedState); 
   } catch (err) {
