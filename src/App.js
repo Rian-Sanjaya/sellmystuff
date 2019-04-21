@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
-import auth from './components/auth';
+import { loadAuth } from './helper/localStorage';
+import { loadAuthSuccess } from './actions/authActions';
 import Home from './components/home';
 import Login from './components/login';
 import Signup from './components/signup';
@@ -10,12 +12,14 @@ import SellAThing from './components/sellathing';
 
 // function component
 // with destucturing argument (component argument, and ...take in the rest of argument(s)
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
+  // console.log("(private route) isi isAuthenticated: ", isAuthenticated);
+  // console.log("Private ...rest: ", {...rest});
   return (
     <Route
       {...rest} 
       render={props => 
-        auth.isAuthenticated 
+        isAuthenticated 
         ? (
             <Component {...props} />
           ) 
@@ -33,99 +37,76 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
+function PublicRoute({ component: Component, isAuthenticated, ...rest }) {
+  // console.log(" (public route) isi isAuthenticated: ", isAuthenticated);
+  // console.log("Public ...rest: ", {...rest});
+  return (
+    <Route 
+      {...rest} 
+      render={props => 
+        !isAuthenticated 
+        ? (
+            <Component {...props} />
+          )
+        : (
+            <Redirect to="/allStuff" />
+          )
+      }
+    />
+  );
+}
+
+// const PublicRoute = ({ component: Component, authed, ...rest}) => {
+// 	return (
+// 		<Route {...rest}
+// 			render={(props) => !authed
+// 				? <Component {...props} />
+// 				: <Redirect to='/' />
+// 			}
+// 		/>
+// 	)
+// }
+
 class App extends Component {
+  componentWillMount() {
+    // console.log("component will mount");
+  }
+
+  componentDidMount() {
+    // console.log("component did mount");
+    const authStorage = loadAuth();
+    // console.log("isi authStorage: ", authStorage);
+    if (authStorage) {
+      this.props.loadAuthSuccess();
+    }
+  }
+
   render() {
-    // let list = 
-    //   <React.Fragment>
-    //     <li><Link to="/login">Login</Link></li>
-    //     <li><Link to="/signup">Sign Up</Link></li>
-    //   </React.Fragment>;
-
-    //   if (auth.isAuthenticated) {
-    //     list = 
-    //       <React.Fragment>
-    //         <li><Link to="/allStuff">All Stuff</Link></li>
-    //         <li><Link to="/sellAThing">Sell A Thing</Link></li>
-    //         <li><Link to="/logout">Log Out</Link></li> 
-    //         {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
-    //       </React.Fragment>
-    //   }
-
+    const { isAuthenticated } = this.props;
+    // console.log("isi isAuthenticated: ", isAuthenticated)
     return (
       <Router>
-        <div>
-          {/* <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              {list}
-            </ul>
-          </nav> */}
-
-          <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <PrivateRoute path="/allStuff" component={AllStuff} />
-          <PrivateRoute path="/sellAThing" component={SellAThing} />
-        </div>
+        <Switch>
+          <PublicRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
+          <PublicRoute exact path="/login" component={Login} isAuthenticated={isAuthenticated} />
+          <PublicRoute path="/signup" component={Signup} isAuthenticated={isAuthenticated} />
+          <PrivateRoute path="/allStuff" component={AllStuff} isAuthenticated={isAuthenticated} />
+          <PrivateRoute path="/sellAThing" component={SellAThing} isAuthenticated={isAuthenticated} />
+        </Switch>
       </Router>
     );
   }
 }
 
-// const NavLink = withRouter(
-//   ({ history }) =>  {
-//     let list = 
-//       <React.Fragment>
-//         <li><Link to="/login">Login</Link></li>
-//         <li><Link to="/signup">Sign Up</Link></li>
-//       </React.Fragment>;
+const mapStateToProps = (state, props) => {
+  return {
+      loading: state.auth.loading,
+      isAuthenticated: state.auth.isAuthenticated,
+  }
+}
 
-//       if (auth.isAuthenticated) {
-//         list = 
-//           <React.Fragment>
-//             <li><Link to="/allStuff">All Stuff</Link></li>
-//             <li><Link to="/sellAThing">Sell A Thing</Link></li>
-//             <li>
-//               <Link 
-//                 to="/logout" 
-//                 onClick={() => {
-//                   auth.isAuthenticated = false;
-//                   history.push("/");
-//                   // return <Redirect to="/" />
-//                 }}
-//               >
-//                 Log Out
-//               </Link>
-//             </li>
-//           </React.Fragment>
-//       }
+const mapActionsToProps = {
+  loadAuthSuccess: loadAuthSuccess,
+}
 
-//     return (
-//       <nav>
-//         <ul>
-//           <li><Link to="/">Home</Link></li>
-//           {list}
-//         </ul>
-//         <hr />
-//       </nav>
-
-//       // auth.isAuthenticated === true 
-//       // ? <p>
-//       //     Welcome!{" "}
-//       //     <button 
-//       //       onClick={() => {
-//       //         auth.signout(() => history.push("/"));
-//       //       }}
-//       //     >
-//       //       Sign Out
-//       //     </button>
-//       //   </p>
-//       // : <p>
-//       //     You are not logged in.
-//       //   </p>
-
-//     );
-//   }
-// );
-
-export default App;
+export default connect(mapStateToProps, mapActionsToProps)(App);

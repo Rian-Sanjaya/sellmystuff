@@ -3,7 +3,7 @@ import auth from './auth';
 import Navigation from './navigation';
 
 const Home = () => {
-  console.log("Home ", auth.isAuthenticated);
+  // console.log("Home ", auth.isAuthenticated);
   return (
     <div>
       <Navigation />

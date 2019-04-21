@@ -1,9 +1,13 @@
 import React from 'react';
-import auth from './auth';
+import Navigation from './navigation';
 
 const SellAThing = () => {
-  console.log("Sell A Thing", auth.isAuthenticated);
-  return <h2>Sell A Thing</h2>;
+  return (
+    <div>
+      <Navigation />
+      <h2>Sell A Thing</h2>
+    </div>
+  )
 }
 
 export default SellAThing;
