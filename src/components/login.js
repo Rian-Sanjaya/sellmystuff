@@ -32,8 +32,7 @@ class Login extends React.Component {
     const name = target.name;
 
     this.setState(( prevState ) => {
-      prevState.loginData[name] = value;
-      return { loginData: prevState.loginData };
+      return { loginData: { ...prevState.loginData, [name]: value } };
     });
   }
 

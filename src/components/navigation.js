@@ -17,19 +17,35 @@ class Navigation extends React.Component {
 
     if (!isAuthenticated) {
       list = 
-        <React.Fragment>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Sign Up</Link></li>
-        </React.Fragment>;
+        // <React.Fragment>
+        //   <li><Link to="/">Home</Link></li>
+        //   <li><Link to="/login">Login</Link></li>
+        //   <li><Link to="/signup">Sign Up</Link></li>
+        // </React.Fragment>;
+        <div className="ui container">
+          <div className="ui secondary pointing menu">
+            <Link to="/" className="item">Home</Link>
+            <Link to="/login" className="item">Login</Link>
+            <Link to="/signup" className="item">Sign Up</Link>
+          </div>
+        </div>
     } else {
       list = 
-        <React.Fragment>
-          <li><Link to="/allStuff">All Stuff</Link></li>
-          <li><Link to="/sellAThing">Sell A Thing</Link></li>
-          <li><Link to="/" onClick={this.handleLogout}>Log Out</Link></li> 
-          {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
-        </React.Fragment>
+        // <React.Fragment>
+        //   <li><Link to="/allStuff">All Stuff</Link></li>
+        //   <li><Link to="/sellAThing">Sell A Thing</Link></li>
+        //   <li><Link to="/" onClick={this.handleLogout}>Log Out</Link></li> 
+        //   {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
+        // </React.Fragment>
+        <div className="ui container">
+          <div className="ui secondary pointing menu">
+            <Link to="/allStuff" className="item">All Stuff</Link>
+            <Link to="/sellAThing" className="item">Sell A Thing</Link>
+            <div className="right menu">
+              <Link to="/" onClick={this.handleLogout} className="ui item">Log Out</Link> 
+            </div>
+          </div>
+        </div>
     }
 
     return (
@@ -37,7 +53,7 @@ class Navigation extends React.Component {
         <ul>
           {list}
         </ul>
-        <hr />
+        {/* <hr /> */}
       </nav>
     );
   }

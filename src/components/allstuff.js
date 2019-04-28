@@ -6,12 +6,16 @@ import { loadAuth } from '../helper/localStorage';
 class AllStuff extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      data: []
+    }
   }
 
   componentDidMount() {
     const authStorage = loadAuth();
-    const { token } = authStorage;
-    const authString = 'Bearer ' + token;
+    const { shazam } = authStorage;
+    const authString = 'Bearer ' + shazam;
     
     axios.get("http://localhost:3000/api/stuff", {
       headers: {
@@ -20,7 +24,8 @@ class AllStuff extends React.Component {
     })
     .then( res => {
       if (res.status && res.status === 200) {
-        console.log(res.data);
+        // console.log(res.data);
+        this.setState({ data: res.data });
       }
     })
     .catch( err => console.log(err) );
@@ -28,10 +33,25 @@ class AllStuff extends React.Component {
 
   render() {
     // console.log("allstuff ", this.props.isAuthenticated)
+    const datas = this.state.data;
+    // console.log("isi datas: ", datas.length)
+    // console.log(datas);
+
     return (
       <div>
         <Navigation />
-        <h2>All Stuff</h2>
+        <div className="ui container">
+          <h2>All Stuff</h2>
+          <div className="ui small images">
+            {/* {console.log(datas)} */}
+            { 
+              datas.length > 0 &&
+              datas.map( data => {
+                return <img key={data._id} src={data.imageUrl} />
+              })
+            }
+          </div>
+        </div>
       </div>
     );
   }

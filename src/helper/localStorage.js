@@ -14,9 +14,13 @@ export const loadAuth = () => {
 
 export const saveAuth = (val) => {
   try {
-    const state = val;
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('@shazam', serializedState); 
+    if (val) {
+      const shazam = val.token;
+      delete val['token'];
+      const state = {...val, shazam: shazam};
+      const serializedState = JSON.stringify(state);
+      localStorage.setItem('@shazam', serializedState);
+    } 
   } catch (err) {
     console.log(err);
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
+// import './App.css';
 import { loadAuth } from './helper/localStorage';
 import { loadAuthSuccess } from './actions/authActions';
 import Home from './components/home';
