@@ -1,5 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import Navigation from './navigation';
+import { loadAuth } from '../helper/localStorage';
 
 const RESET_VALUES = { title: '', price: 0, description: '' };
 
@@ -22,7 +24,12 @@ class SellAThing extends React.Component {
 
     if (e.target.validity.valid) {
       this.setState( prevState => {
-        return { data: { ...prevState.data, [name]: value } };
+        return { 
+          data: { 
+            ...prevState.data, 
+            [name]: value 
+          } 
+        };
       });
     }
   }
@@ -30,7 +37,27 @@ class SellAThing extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log("Submit clicked");
+    const authStorage = loadAuth();
+    const { shazam, userId } = authStorage;
+    const authString = 'Bearer ' + shazam;
+
+    const formData = new FormData();
+    formData.append('title', this.state.data.title);
+    formData.append('description', this.state.data.description);
+    formData.append('image', this.state.file);
+    formData.append('price', this.state.data.price);
+    formData.append('userId', userId);
+    
+    axios.post('http://localhost:3000/api/stuff', formData, {
+      headers: {
+        Authorization: authString,
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then( res => {
+      console.log("isi res: ", res);
+    })
+    .catch( err => console.log(err) );
   }
 
   _handleImageChange(e) {
@@ -70,7 +97,7 @@ class SellAThing extends React.Component {
               required 
             />
             <br />
-            <input type="file" onChange={(e) => this._handleImageChange(e)} />
+            <input type="file" name="image" onChange={(e) => this._handleImageChange(e)} />
             <br />
             {$imagePreview}
             <br />

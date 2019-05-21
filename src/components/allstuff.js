@@ -43,7 +43,6 @@ class AllStuff extends React.Component {
         <div>
           <h2>All Stuff</h2>
           <div className="ui small images">
-            {console.log(datas)}
             { 
               datas.length > 0 &&
               datas.map( data => {
