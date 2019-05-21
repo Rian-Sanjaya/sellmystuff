@@ -22,13 +22,13 @@ class Navigation extends React.Component {
         //   <li><Link to="/login">Login</Link></li>
         //   <li><Link to="/signup">Sign Up</Link></li>
         // </React.Fragment>;
-        <div className="ui container">
+        // <div className="ui container">
           <div className="ui secondary pointing menu">
             <Link to="/" className="item">Home</Link>
             <Link to="/login" className="item">Login</Link>
             <Link to="/signup" className="item">Sign Up</Link>
           </div>
-        </div>
+        // </div>
     } else {
       list = 
         // <React.Fragment>
@@ -37,7 +37,7 @@ class Navigation extends React.Component {
         //   <li><Link to="/" onClick={this.handleLogout}>Log Out</Link></li> 
         //   {/* log out should take / redirect to homepage and navigation link should change to show login and signup */}
         // </React.Fragment>
-        <div className="ui container">
+        // <div className="ui container">
           <div className="ui secondary pointing menu">
             <Link to="/allStuff" className="item">All Stuff</Link>
             <Link to="/sellAThing" className="item">Sell A Thing</Link>
@@ -45,7 +45,7 @@ class Navigation extends React.Component {
               <Link to="/" onClick={this.handleLogout} className="ui item">Log Out</Link> 
             </div>
           </div>
-        </div>
+        // </div>
     }
 
     return (

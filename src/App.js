@@ -85,15 +85,17 @@ class App extends Component {
     const { isAuthenticated } = this.props;
     // console.log("isi isAuthenticated: ", isAuthenticated)
     return (
-      <Router>
-        <Switch>
-          <PublicRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
-          <PublicRoute exact path="/login" component={Login} isAuthenticated={isAuthenticated} />
-          <PublicRoute path="/signup" component={Signup} isAuthenticated={isAuthenticated} />
-          <PrivateRoute path="/allStuff" component={AllStuff} isAuthenticated={isAuthenticated} />
-          <PrivateRoute path="/sellAThing" component={SellAThing} isAuthenticated={isAuthenticated} />
-        </Switch>
-      </Router>
+      <div className="ui container">
+        <Router>
+          <Switch>
+            <PublicRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
+            <PublicRoute exact path="/login" component={Login} isAuthenticated={isAuthenticated} />
+            <PublicRoute path="/signup" component={Signup} isAuthenticated={isAuthenticated} />
+            <PrivateRoute path="/allStuff" component={AllStuff} isAuthenticated={isAuthenticated} />
+            <PrivateRoute path="/sellAThing" component={SellAThing} isAuthenticated={isAuthenticated} />
+          </Switch>
+        </Router>
+      </div>
     );
   }
 }
