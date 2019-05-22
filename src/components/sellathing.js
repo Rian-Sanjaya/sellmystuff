@@ -3,7 +3,7 @@ import axios from 'axios';
 import Navigation from './navigation';
 import { loadAuth } from '../helper/localStorage';
 
-const RESET_VALUES = { title: '', price: 0, description: '' };
+const RESET_VALUES = { title: '', description: '', imageUrl: '', price: 0, userId: '' };
 
 class SellAThing extends React.Component {
   constructor(props) {
@@ -12,8 +12,7 @@ class SellAThing extends React.Component {
     this.state = {
       data: Object.assign({}, RESET_VALUES),
       file: '',
-      imagePreviewUrl: '',
-      numberInput: ''
+      imagePreviewUrl: ''
     };
   }
 
@@ -82,7 +81,7 @@ class SellAThing extends React.Component {
   }
 
   render() {
-    const { data, imagePreviewUrl } = this.state
+    const { data, imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} alt='' />);

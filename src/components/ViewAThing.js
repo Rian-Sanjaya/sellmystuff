@@ -34,6 +34,25 @@ class ViewAThing extends React.Component {
     .catch( err => console.log(err) );
   }
 
+  handleDelete(e) {
+    e.preventDefault();
+
+    const authStorage = loadAuth();
+    const { shazam } = authStorage;
+    const authString = 'Bearer ' + shazam;
+
+    axios.delete(`http://localhost:3000/api/stuff/${this.state.data._id}`, {
+      headers: {
+        Authorization: authString
+      }
+    })
+    .then( res => {
+      console.log("isi res: ", res);
+      return this.props.history.push("/allStuff");
+    })
+    .catch( err => console.log(err) );
+  }
+
   render() {
     // console.log(this.state.data);
     const { _id, title, description, imageUrl, price } = this.state.data;
@@ -48,13 +67,18 @@ class ViewAThing extends React.Component {
         <p>{description}</p>
         <button
           onClick={ () => {
-            console.log("modify clicked")
             return this.props.history.push({pathname: "/modifyAThing", state: {_id: _id}})
           }}
         >
           Modify
         </button>
-        <button>Delete</button>
+        <button
+          onClick={ (e) => {
+            this.handleDelete(e)
+          }} 
+        >
+          Delete
+        </button>
       </div>
     );
   }
