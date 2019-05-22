@@ -41,13 +41,18 @@ class SellAThing extends React.Component {
     const { shazam, userId } = authStorage;
     const authString = 'Bearer ' + shazam;
 
+    const thing = {
+      title: this.state.data.title,
+      description: this.state.data.description,
+      imageUrl: '',
+      price: this.state.data.price,
+      userId: userId
+    };
+
     const formData = new FormData();
-    formData.append('title', this.state.data.title);
-    formData.append('description', this.state.data.description);
+    formData.append('thing', JSON.stringify(thing));
     formData.append('image', this.state.file);
-    formData.append('price', this.state.data.price);
-    formData.append('userId', userId);
-    
+
     axios.post('http://localhost:3000/api/stuff', formData, {
       headers: {
         Authorization: authString,
