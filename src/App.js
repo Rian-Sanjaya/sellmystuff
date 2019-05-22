@@ -9,6 +9,8 @@ import Login from './components/login';
 import Signup from './components/signup';
 import AllStuff from './components/allstuff';
 import SellAThing from './components/sellathing';
+import ViewAThing from './components/ViewAThing';
+import ModifyAThing from './components/ModifyAThing';
 
 // function component
 // with destucturing argument (component argument, and ...take in the rest of argument(s)
@@ -93,6 +95,8 @@ class App extends Component {
             <PublicRoute path="/signup" component={Signup} isAuthenticated={isAuthenticated} />
             <PrivateRoute path="/allStuff" component={AllStuff} isAuthenticated={isAuthenticated} />
             <PrivateRoute path="/sellAThing" component={SellAThing} isAuthenticated={isAuthenticated} />
+            <PrivateRoute path="/viewAThing" component={ViewAThing} isAuthenticated={isAuthenticated} />
+            <PrivateRoute path="/modifyAThing" component={ModifyAThing} isAuthenticated={isAuthenticated} />
           </Switch>
         </Router>
       </div>

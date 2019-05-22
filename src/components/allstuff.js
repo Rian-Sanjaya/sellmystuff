@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './navigation';
 import { loadAuth } from '../helper/localStorage';
@@ -46,7 +47,17 @@ class AllStuff extends React.Component {
             { 
               datas.length > 0 &&
               datas.map( data => {
-                return <img key={data._id} src={data.imageUrl} />
+                return (
+                  <Link 
+                    key={data._id} 
+                    to={{
+                      pathname: "/viewAThing",
+                      state: { _id: data._id }
+                    }} 
+                  >
+                    <img src={data.imageUrl} alt={data.title} />
+                  </Link>
+                )
               })
             }
           </div>

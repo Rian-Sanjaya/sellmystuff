@@ -85,7 +85,7 @@ class SellAThing extends React.Component {
     const { data, imagePreviewUrl } = this.state
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<img src={imagePreviewUrl} alt='' />);
     }
     return (
       <div>
