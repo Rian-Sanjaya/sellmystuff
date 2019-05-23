@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutSuccess } from '../actions/authActions';
+import '../style/style.css';
 
 class Navigation extends React.Component {
   handleLogout() {
@@ -36,8 +37,15 @@ class Navigation extends React.Component {
     }
 
     return (
-      <div className="ui mini menu">
-        {list}
+      <div>
+        <div className="ui mini menu" style={{ margin: 0 }}>
+          {list}
+        </div>
+        <div className="hero-image">
+          <h2 className="hero-text">
+            THE ABSOLUTE BEST PLACE TO SELL YOUR STUFF
+          </h2>
+        </div>
       </div>
     );
   }

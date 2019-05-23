@@ -77,42 +77,41 @@ class Login extends React.Component {
     return (
       <div>
         <Navigation />
-        <h2>Login</h2>
-        <form>
-          <label>
-            <span className="login-label">Email address</span>
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Enter your email address" 
-              value={this.state.loginData.email} 
-              onChange={this.handleChange} 
-              required 
-            />
-          </label>
-          <br />
-          <label>
-            <span className="login-label">Password</span>
-            <input 
-              type="password" 
-              name="password" 
-              placeholder="Enter your password"
-              value={this.state.loginData.password}
-              onChange={this.handleChange} 
-              required 
-            />
-          </label>
-          <br />
-          <input 
-            className="login-button" 
-            type="submit" 
-            value="Login" 
-            onClick={this.handleLogin} 
-          />
-        </form>
-        {/* <button onClick={this.login}>
-          Login
-        </button> */}
+        <div>
+          <h2>Login</h2>
+          <form className="ui form">
+            <div className="field">
+              <label>Email address</label>
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Enter your email address" 
+                value={this.state.loginData.email} 
+                onChange={this.handleChange} 
+                required 
+              />
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <input 
+                type="password" 
+                name="password" 
+                placeholder="Enter your password"
+                value={this.state.loginData.password}
+                onChange={this.handleChange} 
+                required 
+              />
+            </div>
+            <br />
+            <button 
+              className="ui button" 
+              type="submit" 
+              onClick={this.handleLogin} 
+            >
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
