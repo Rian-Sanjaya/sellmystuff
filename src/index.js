@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 import App from './App';
 import { createStore, combineReducers,  applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { stat } from 'fs';
+// import { stat } from 'fs';
 
 // const LOAD_AUTH = 'LOAD_AUTH';
 // const LOAD_AUTH_SUCCESS = 'LOAD_AUTH_SUCCESS';

@@ -97,6 +97,7 @@ class ModifyAThing extends React.Component {
     })
     .then( res => {
       console.log("isi res: ", res);
+      return this.props.history.push('/allStuff');
     })
     .catch( err => console.log(err) );
   }

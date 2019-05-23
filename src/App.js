@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import './App.css';
 import { loadAuth } from './helper/localStorage';
 import { loadAuthSuccess } from './actions/authActions';
 import Home from './components/home';
@@ -87,7 +86,7 @@ class App extends Component {
     const { isAuthenticated } = this.props;
     // console.log("isi isAuthenticated: ", isAuthenticated)
     return (
-      <div className="ui container">
+      // <div className="ui container">
         <Router>
           <Switch>
             <PublicRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
@@ -99,7 +98,7 @@ class App extends Component {
             <PrivateRoute path="/modifyAThing" component={ModifyAThing} isAuthenticated={isAuthenticated} />
           </Switch>
         </Router>
-      </div>
+      // </div>
     );
   }
 }

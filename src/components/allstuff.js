@@ -41,7 +41,7 @@ class AllStuff extends React.Component {
     return (
       <div>
         <Navigation />
-        <div>
+        <div className="ui container">
           <h2>All Stuff</h2>
           <div className="ui small images">
             { 

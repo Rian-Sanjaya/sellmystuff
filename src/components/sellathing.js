@@ -56,10 +56,14 @@ class SellAThing extends React.Component {
       headers: {
         Authorization: authString,
         'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress: progressEvent => {
+        console.log("Progress: ", progressEvent.loaded / progressEvent.total)
       }
     })
     .then( res => {
       console.log("isi res: ", res);
+      return this.props.history.push('/allStuff');
     })
     .catch( err => console.log(err) );
   }
