@@ -43,7 +43,7 @@ class AllStuff extends React.Component {
         <Navigation />
         <div className="ui container">
           <h2>All Stuff</h2>
-          <div className="ui small images">
+          {/* <div className="ui small images">
             { 
               datas.length > 0 &&
               datas.map( data => {
@@ -56,6 +56,33 @@ class AllStuff extends React.Component {
                     }} 
                   >
                     <img src={data.imageUrl} alt={data.title} />
+                  </Link>
+                )
+              })
+            }
+          </div> */}
+          <div className="ui centered cards">
+            { 
+              datas.length > 0 &&
+              datas.map( data => {
+                return (
+                  <Link 
+                    key={data._id} 
+                    to={{
+                      pathname: "/viewAThing",
+                      state: { _id: data._id }
+                    }} 
+                  >
+                    <div className="card" style={{ margin: '5px' }}>
+                      <div className="image">
+                        <img src={data.imageUrl} alt={data.title} style={{ height: '270px', width: '270px' }} />
+                      </div>
+                      <div className="content">
+                        <div className="header">{data.title}</div>
+                        <div className="meta">{data.price}</div>
+                        <div className="description">{data.description}</div>
+                      </div>
+                    </div>
                   </Link>
                 )
               })

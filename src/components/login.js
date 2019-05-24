@@ -77,7 +77,7 @@ class Login extends React.Component {
     return (
       <div>
         <Navigation />
-        <div>
+        <div className="" style={{ margin: '0 auto', maxWidth: '1000px' }}>
           <h2>Login</h2>
           <form className="ui form">
             <div className="field">
@@ -88,6 +88,7 @@ class Login extends React.Component {
                 placeholder="Enter your email address" 
                 value={this.state.loginData.email} 
                 onChange={this.handleChange} 
+                autoComplete="off"
                 required 
               />
             </div>

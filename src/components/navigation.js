@@ -41,7 +41,7 @@ class Navigation extends React.Component {
         <div className="ui mini menu" style={{ margin: 0 }}>
           {list}
         </div>
-        <div className="hero-image">
+        <div className="hero-image" style={{ marginBottom: '20px' }}>
           <h2 className="hero-text">
             THE ABSOLUTE BEST PLACE TO SELL YOUR STUFF
           </h2>
