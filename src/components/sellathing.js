@@ -88,40 +88,43 @@ class SellAThing extends React.Component {
     const { data, imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} alt='' />);
+      $imagePreview = (<img src={imagePreviewUrl} alt='' style={{ width: '100%' }} />);
     }
     return (
       <div>
         <Navigation />
-        <h2>Sell A Thing</h2>
-        <form>
-            <label className="sell-label">Title</label><br />
-            <input 
-              type="text" 
-              name="title" 
-              placeholder="What are you selling ?" 
-              value={data.title} 
-              onChange={ (e) => this.handleChange(e) } 
-              required 
-            />
-            <br />
+        <div className="ui container">
+          <form className="ui form">
+            <div className="field">
+              <label className="sell-label">Title</label><br />
+              <input 
+                type="text" 
+                name="title" 
+                placeholder="What are you selling ?" 
+                value={data.title} 
+                onChange={ (e) => this.handleChange(e) } 
+                autoComplete='off'
+                required 
+              />
+            </div>
             <input type="file" name="image" onChange={(e) => this._handleImageChange(e)} />
-            <br />
             {$imagePreview}
-            <br />
-            <label>Price</label><br />
-            <input type="number" name='price' value={data.price} onChange={(e) => this.handleChange(e)} step="any" />
-            <br />
-            <label>Description</label><br />
-            <textarea 
-              name="description" 
-              value={data.description} 
-              onChange={ (e) => this.handleChange(e) } 
-              required 
-            />
-            <br />
+            <div className="field">
+              <label>Price</label><br />
+              <input type="number" name='price' value={data.price} onChange={(e) => this.handleChange(e)} step="any" autoComplete="off" />
+            </div>
+            <div className="field">
+              <label>Description</label><br />
+              <textarea 
+                name="description" 
+                value={data.description} 
+                onChange={ (e) => this.handleChange(e) } 
+                required 
+              />
+            </div>
             <button onClick={(e) => this.handleSubmit(e)}>Submit</button>
-        </form>
+          </form>
+        </div>
       </div>
     )
   }

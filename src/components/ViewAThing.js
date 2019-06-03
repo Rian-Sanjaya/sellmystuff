@@ -60,25 +60,26 @@ class ViewAThing extends React.Component {
     return (
       <div>
         <Navigation />
-        <h2>View A Thing</h2>
-        <img src={imageUrl} alt={title} />
-        <p>{title}</p>
-        <p>{price}</p>
-        <p>{description}</p>
-        <button
-          onClick={ () => {
-            return this.props.history.push({pathname: "/modifyAThing", state: {_id: _id}})
-          }}
-        >
-          Modify
-        </button>
-        <button
-          onClick={ (e) => {
-            this.handleDelete(e)
-          }} 
-        >
-          Delete
-        </button>
+        <div className="ui container">
+          <img src={imageUrl} alt={title} style={{ maxWidth: '100%' }} />
+          <p>{title}</p>
+          <p>{price}</p>
+          <p>{description}</p>
+          <button
+            onClick={ () => {
+              return this.props.history.push({pathname: "/modifyAThing", state: {_id: _id}})
+            }}
+          >
+            Modify
+          </button>
+          <button
+            onClick={ (e) => {
+              this.handleDelete(e)
+            }} 
+          >
+            Delete
+          </button>
+        </div>
       </div>
     );
   }
