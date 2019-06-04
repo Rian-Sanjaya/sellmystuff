@@ -61,11 +61,12 @@ class ViewAThing extends React.Component {
       <div>
         <Navigation />
         <div className="ui container">
-          <img src={imageUrl} alt={title} style={{ maxWidth: '100%' }} />
-          <p>{title}</p>
-          <p>{price}</p>
-          <p>{description}</p>
+          <img src={imageUrl} alt={title} style={{ maxWidth: '100%', marginTop: 20 }} />
+          <h1>{title}</h1>
+          <h2 style={{ color: '#7DB5F9'}}>{`Rp. ${price}`}</h2>
+          <p style={{ fontSize: 20 }}>{description}</p>
           <button
+            className="ui primary button"
             onClick={ () => {
               return this.props.history.push({pathname: "/modifyAThing", state: {_id: _id}})
             }}
@@ -73,6 +74,7 @@ class ViewAThing extends React.Component {
             Modify
           </button>
           <button
+            className="ui red button"
             onClick={ (e) => {
               this.handleDelete(e)
             }} 

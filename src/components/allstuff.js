@@ -41,6 +41,11 @@ class AllStuff extends React.Component {
     return (
       <div>
         <Navigation />
+        <div className="hero-image" style={{ marginBottom: '20px' }}>
+          <h2 className="hero-text">
+            THE ABSOLUTE BEST PLACE TO SELL YOUR STUFF
+          </h2>
+        </div>
         <div className="ui container">
           <div className="ui centered cards">
             { 
@@ -59,8 +64,8 @@ class AllStuff extends React.Component {
                         <img src={data.imageUrl} alt={data.title} style={{ height: '270px', width: '270px' }} />
                       </div>
                       <div className="content">
-                        <div className="header">{data.title}</div>
-                        <div className="meta">{data.price}</div>
+                        <div className="header" style={{ fontSize: 22, color: '#1E1E1E' }}>{data.title}</div>
+                        <div className="meta" style={{ fontSize: 16 }}>{`Rp. ${data.price}`}</div>
                       </div>
                     </div>
                   </Link>

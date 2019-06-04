@@ -19,32 +19,28 @@ class Navigation extends React.Component {
     if (!isAuthenticated) {
       list = 
           <React.Fragment>
-            <Link to="/" className="active item">Home</Link>
+            <Link style={{ color: '#FFF' }} to="/" className="active item">Home</Link>
             <div className="right menu">
-              <Link to="/login" className="item">Login</Link>
-              <Link to="/signup" className="item">Sign Up</Link>
+              <Link style={{ color: '#FFF' }} to="/login" className="item">Login</Link>
+              <Link style={{ color: '#FFF' }} to="/signup" className="item">Sign Up</Link>
             </div>
           </React.Fragment>
     } else {
       list = 
           <React.Fragment>
-            <Link to="/allStuff" className="item">All Stuff</Link>
-            <Link to="/sellAThing" className="item">Sell A Thing</Link>
+            <Link style={{ color: '#FFF' }} to="/allStuff" className="item">All Stuff</Link>
+            <Link style={{ color: '#FFF' }} to="/sellAThing" className="item">Sell A Thing</Link>
             <div className="right menu">
-              <Link to="/" onClick={this.handleLogout} className="item">Log Out</Link> 
+              <Link style={{ color: '#FFF' }} to="/" onClick={this.handleLogout} className="item">Log Out</Link> 
             </div>
           </React.Fragment>
     }
 
     return (
       <div>
-        <div className="ui mini menu" style={{ margin: 0 }}>
+        <div className="ui mini menu" style={{ margin: 0, fontSize: 24, backgroundColor: '#333333' }}>
+          <div style={{ fontSize: 28, color: '#FFF' }} className='item'>Sell My Stuff</div>
           {list}
-        </div>
-        <div className="hero-image" style={{ marginBottom: '20px' }}>
-          <h2 className="hero-text">
-            THE ABSOLUTE BEST PLACE TO SELL YOUR STUFF
-          </h2>
         </div>
       </div>
     );

@@ -77,11 +77,11 @@ class Login extends React.Component {
     return (
       <div>
         <Navigation />
-        <div className="" style={{ margin: '0 auto', maxWidth: '1000px' }}>
+        <div className="" style={{ margin: '0 auto', marginTop: 20, maxWidth: '1000px' }}>
           <h2>Login</h2>
           <form className="ui form">
             <div className="field">
-              <label>Email address</label>
+              <label style={{ fontSize: 16 }}>Email address</label>
               <input 
                 type="email" 
                 name="email" 
@@ -93,7 +93,7 @@ class Login extends React.Component {
               />
             </div>
             <div className="field">
-              <label>Password</label>
+              <label style={{ fontSize: 16 }}>Password</label>
               <input 
                 type="password" 
                 name="password" 
@@ -105,7 +105,7 @@ class Login extends React.Component {
             </div>
             <br />
             <button 
-              className="ui button" 
+              className="ui teal button" 
               type="submit" 
               onClick={this.handleLogin} 
             >
