@@ -18,28 +18,27 @@ class Navigation extends React.Component {
 
     if (!isAuthenticated) {
       list = 
-          <React.Fragment>
-            <Link style={{ color: '#FFF' }} to="/" className="active item">Home</Link>
-            <div className="right menu">
-              <Link style={{ color: '#FFF' }} to="/login" className="item">Login</Link>
-              <Link style={{ color: '#FFF' }} to="/signup" className="item">Sign Up</Link>
-            </div>
-          </React.Fragment>
+        <React.Fragment>
+          <div className="right menu">
+            <Link style={{ color: '#FFF' }} to="/login" className="item">Login</Link>
+            <Link style={{ color: '#FFF' }} to="/signup" className="item">Sign Up</Link>
+          </div>
+        </React.Fragment>
     } else {
       list = 
-          <React.Fragment>
-            <Link style={{ color: '#FFF' }} to="/allStuff" className="item">All Stuff</Link>
-            <Link style={{ color: '#FFF' }} to="/sellAThing" className="item">Sell A Thing</Link>
-            <div className="right menu">
-              <Link style={{ color: '#FFF' }} to="/" onClick={this.handleLogout} className="item">Log Out</Link> 
-            </div>
-          </React.Fragment>
+        <React.Fragment>
+          <Link style={{ color: '#FFF' }} to="/allStuff" className="item">My Stuff</Link>
+          <Link style={{ color: '#FFF' }} to="/sellAThing" className="item">Sell A Thing</Link>
+          <div className="right menu">
+            <Link style={{ color: '#FFF' }} to="/" onClick={this.handleLogout} className="item">Log Out</Link> 
+          </div>
+        </React.Fragment>
     }
 
     return (
       <div>
         <div className="ui mini menu" style={{ margin: 0, fontSize: 24, backgroundColor: '#333333' }}>
-          <div style={{ fontSize: 28, color: '#FFF' }} className='item'>Sell My Stuff</div>
+          <Link style={{ fontSize: 28, color: '#FFF' }} className='item' to="/">All Stuff</Link>
           {list}
         </div>
       </div>

@@ -3,19 +3,22 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './navigation';
 import { loadAuth } from '../helper/localStorage';
+import auth from './auth';
 
 class AllStuff extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      loginId: ''
     }
   }
 
   componentDidMount() {
     const authStorage = loadAuth();
-    const { shazam } = authStorage;
+    // console.log('isi authStorage: ', authStorage)
+    const { shazam, userId } = authStorage;
     const authString = 'Bearer ' + shazam;
     
     axios.get("http://localhost:3000/api/stuff", {
@@ -26,7 +29,13 @@ class AllStuff extends React.Component {
     .then( res => {
       if (res.status && res.status === 200) {
         // console.log(res.data);
-        this.setState({ data: res.data });
+        const filteredData = res.data.filter( data => {
+          return data.userId ===  userId
+        })
+        this.setState({ 
+          data: filteredData, 
+          loginId: userId 
+        });
       }
     })
     .catch( err => console.log(err) );
@@ -47,6 +56,7 @@ class AllStuff extends React.Component {
           </h2>
         </div>
         <div className="ui container">
+          <h2 style={{ textAlign: 'center' }}>My Stuff</h2>
           <div className="ui centered cards">
             { 
               datas.length > 0 &&

@@ -88,12 +88,12 @@ class SellAThing extends React.Component {
     const { data, imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} alt='' style={{ width: '100%' }} />);
+      $imagePreview = (<img src={imagePreviewUrl} alt='' style={{ maxWidth: '100%', height: 'auto' }} />);
     }
     return (
       <div>
         <Navigation />
-        <div className="ui container">
+        <div className="ui container" style={{ marginTop: 20 }}>
           <form className="ui form">
             <div className="field">
               <label className="sell-label">Title</label><br />
@@ -107,7 +107,9 @@ class SellAThing extends React.Component {
                 required 
               />
             </div>
-            <input type="file" name="image" onChange={(e) => this._handleImageChange(e)} />
+            <label htmlFor='add-image' className='ui green button'>Add Image</label>
+            <input type="file" accept='image/*' name="image" onChange={(e) => this._handleImageChange(e)} id='add-image' style={{ display: 'none' }} />
+            <br />
             {$imagePreview}
             <div className="field">
               <label>Price</label><br />
@@ -122,7 +124,7 @@ class SellAThing extends React.Component {
                 required 
               />
             </div>
-            <button onClick={(e) => this.handleSubmit(e)}>Submit</button>
+            <button onClick={(e) => this.handleSubmit(e)} className='ui primary button'>Submit</button>
           </form>
         </div>
       </div>

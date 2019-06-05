@@ -5,11 +5,12 @@ import { loadAuth } from './helper/localStorage';
 import { loadAuthSuccess } from './actions/authActions';
 import Home from './components/home';
 import Login from './components/login';
-import Signup from './components/signup';
+import Signup from './components/Signup';
 import AllStuff from './components/allstuff';
 import SellAThing from './components/sellathing';
 import ViewAThing from './components/ViewAThing';
 import ModifyAThing from './components/ModifyAThing';
+import View from './components/View'
 
 // function component
 // with destucturing argument (component argument, and ...take in the rest of argument(s)
@@ -40,33 +41,29 @@ function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
 
 function PublicRoute({ component: Component, isAuthenticated, ...rest }) {
   // console.log(" (public route) isi isAuthenticated: ", isAuthenticated);
-  // console.log("Public ...rest: ", {...rest});
+  
   return (
     <Route 
       {...rest} 
-      render={props => 
-        !isAuthenticated 
-        ? (
-            <Component {...props} />
-          )
-        : (
-            <Redirect to="/allStuff" />
-          )
-      }
+      render={props => {
+        // console.log("...rest: ", rest.path);
+        // console.log('isi props: ', props)
+        if (rest.path === "/" || rest.path === "/view") {
+          return <Component {...props} />
+
+        } else {
+          return !isAuthenticated 
+          ? (
+              <Component {...props} />
+            )
+          : (
+              <Redirect to="/allStuff" />
+            )
+          }
+      }}
     />
   );
 }
-
-// const PublicRoute = ({ component: Component, authed, ...rest}) => {
-// 	return (
-// 		<Route {...rest}
-// 			render={(props) => !authed
-// 				? <Component {...props} />
-// 				: <Redirect to='/' />
-// 			}
-// 		/>
-// 	)
-// }
 
 class App extends Component {
   componentWillMount() {
@@ -90,6 +87,7 @@ class App extends Component {
         <Router>
           <Switch>
             <PublicRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
+            <PublicRoute path="/view" component={View} isAuthenticated={isAuthenticated} />
             <PublicRoute exact path="/login" component={Login} isAuthenticated={isAuthenticated} />
             <PublicRoute path="/signup" component={Signup} isAuthenticated={isAuthenticated} />
             <PrivateRoute path="/allStuff" component={AllStuff} isAuthenticated={isAuthenticated} />

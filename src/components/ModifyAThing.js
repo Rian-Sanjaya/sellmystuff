@@ -107,40 +107,45 @@ class ModifyAThing extends React.Component {
     const { data, imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} alt='' />);
+      $imagePreview = (<img src={imagePreviewUrl} alt='' style={{ maxWidth: '100%' }} />);
     }
     return (
       <div>
         <Navigation />
-        <h2>Modify A Thing</h2>
-        <form>
-            <label className="sell-label">Title</label><br />
-            <input 
-              type="text" 
-              name="title" 
-              placeholder="What are you selling ?" 
-              value={data.title} 
-              onChange={ (e) => this.handleChange(e) } 
-              required 
-            />
-            <br />
-            <input type="file" name="image" onChange={(e) => this._handleImageChange(e)} />
+        <div className="ui container" style={{ marginTop: 20 }}>
+          <form className='ui form'>
+            <div className='field'>
+              <label>Title</label><br />
+              <input 
+                type="text" 
+                name="title" 
+                placeholder="What are you selling ?" 
+                value={data.title} 
+                onChange={ (e) => this.handleChange(e) } 
+                autoComplete='off'
+                required 
+              />
+            </div>
+            <label htmlFor='add-image' className='ui green button'>Add Image</label>
+            <input type="file" accept='image/*' id='add-image' name="image" style={{ display: 'none' }} onChange={(e) => this._handleImageChange(e)} />
             <br />
             {$imagePreview}
-            <br />
-            <label>Price</label><br />
-            <input type="number" name='price' value={data.price} onChange={(e) => this.handleChange(e)} step="any" />
-            <br />
-            <label>Description</label><br />
-            <textarea 
-              name="description" 
-              value={data.description} 
-              onChange={ (e) => this.handleChange(e) } 
-              required 
-            />
-            <br />
-            <button onClick={(e) => this.handleSubmit(e)}>Update</button>
-        </form>
+            <div className='field'>
+              <label>Price</label><br />
+              <input type="number" name='price' value={data.price} onChange={(e) => this.handleChange(e)} step="any" />
+            </div>
+            <div className='field'>
+              <label>Description</label><br />
+              <textarea 
+                name="description" 
+                value={data.description} 
+                onChange={ (e) => this.handleChange(e) } 
+                required 
+              />
+            </div>
+            <button className='ui primary button' onClick={(e) => this.handleSubmit(e)}>Update</button>
+          </form>
+        </div>
       </div>
     )
   }
