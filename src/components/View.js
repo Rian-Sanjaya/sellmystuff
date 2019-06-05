@@ -1,9 +1,6 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './navigation';
-import { loadAuth } from '../helper/localStorage';
-import auth from './auth';
 
 class View extends React.Component {
   constructor(props) {
@@ -30,7 +27,7 @@ class View extends React.Component {
   render() {
     // console.log(this.state.data);
     // console.log('isi loginId: ',this.state.loginId)
-    const { _id, title, description, imageUrl, price, userId } = this.state.data;
+    const { title, description, imageUrl, price } = this.state.data;
 
     return (
       <div>

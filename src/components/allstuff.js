@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './navigation';
 import { loadAuth } from '../helper/localStorage';
-import auth from './auth';
 
 class AllStuff extends React.Component {
   constructor(props) {
