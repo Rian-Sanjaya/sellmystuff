@@ -5,7 +5,7 @@ import { loadAuth } from './helper/localStorage';
 import { loadAuthSuccess } from './actions/authActions';
 import Home from './components/home';
 import Login from './components/login';
-import Signup from './components/Signup';
+import Signup from './components/signup';
 import AllStuff from './components/allstuff';
 import SellAThing from './components/sellathing';
 import ViewAThing from './components/ViewAThing';
