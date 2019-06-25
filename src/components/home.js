@@ -14,7 +14,8 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3000/api/stuff")
+    // axios.get("http://localhost:3000/api/stuff")
+    axios.get("https://tranquil-ridge-40313.herokuapp.com/api/stuff")
     .then( res => {
       if (res.status && res.status === 200) {
         // console.log('isi res.data: ', res.data);

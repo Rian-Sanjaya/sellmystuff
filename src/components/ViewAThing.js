@@ -20,7 +20,8 @@ class ViewAThing extends React.Component {
     const authString = 'Bearer ' + shazam;
     const { _id } = this.props.location.state;
     
-    axios.get(`http://localhost:3000/api/stuff/${_id}`, {
+    // axios.get(`http://localhost:3000/api/stuff/${_id}`, {
+    axios.get(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/${_id}`, {
       headers: {
         Authorization: authString
       }
@@ -41,7 +42,8 @@ class ViewAThing extends React.Component {
     const { shazam } = authStorage;
     const authString = 'Bearer ' + shazam;
 
-    axios.delete(`http://localhost:3000/api/stuff/${this.state.data._id}`, {
+    // axios.delete(`http://localhost:3000/api/stuff/${this.state.data._id}`, {
+    axios.delete(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/${this.state.data._id}`, {
       headers: {
         Authorization: authString
       }

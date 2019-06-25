@@ -12,6 +12,8 @@ import ViewAThing from './components/ViewAThing';
 import ModifyAThing from './components/ModifyAThing';
 import View from './components/View'
 
+// https://tranquil-ridge-40313.herokuapp.com
+
 // function component
 // with destucturing argument (component argument, and ...take in the rest of argument(s)
 function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {

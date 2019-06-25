@@ -49,7 +49,8 @@ class Signup extends React.Component {
     }
     // console.log("isi data: ", data);
 
-    axios.post("http://localhost:3000/api/auth/signup", data)
+    // axios.post("http://localhost:3000/api/auth/signup", data)
+    axios.post("https://tranquil-ridge-40313.herokuapp.com/api/auth/signup", data)
     .then( res => {
       if (res.status && res.status === 201) {
         // console.log(res);

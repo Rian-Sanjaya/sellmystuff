@@ -23,7 +23,8 @@ class ModifyAThing extends React.Component {
     const authString = 'Bearer ' + shazam;
     const { _id } = this.props.location.state;
     
-    axios.get(`http://localhost:3000/api/stuff/${_id}`, {
+    // axios.get(`http://localhost:3000/api/stuff/${_id}`, {
+    axios.get(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/${_id}`, {
       headers: {
         Authorization: authString
       }
@@ -89,7 +90,8 @@ class ModifyAThing extends React.Component {
     formData.append('thing', JSON.stringify(thing));
     formData.append('image', this.state.file);
 
-    axios.put(`http://localhost:3000/api/stuff/${this.state.data._id}`, formData, {
+    // axios.put(`http://localhost:3000/api/stuff/${this.state.data._id}`, formData, {
+    axios.put(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/${this.state.data._id}`, formData, {
       headers: {
         Authorization: authString,
         'Content-Type': 'multipart/form-data'

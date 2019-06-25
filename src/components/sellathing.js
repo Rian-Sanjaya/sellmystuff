@@ -52,7 +52,8 @@ class SellAThing extends React.Component {
     formData.append('thing', JSON.stringify(thing));
     formData.append('image', this.state.file);
 
-    axios.post('http://localhost:3000/api/stuff', formData, {
+    // axios.post('http://localhost:3000/api/stuff', formData, {
+    axios.post('https://tranquil-ridge-40313.herokuapp.com/api/stuff', formData, {
       headers: {
         Authorization: authString,
         'Content-Type': 'multipart/form-data'
