@@ -14,8 +14,8 @@ class View extends React.Component {
   componentDidMount() {
     const { _id } = this.props.location.state;
     
-    // axios.get(`http://localhost:3000/api/stuff/view/${_id}`)
-    axios.get(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/view/${_id}`)
+    axios.get(`http://localhost:3010/api/stuff/view/${_id}`)
+    // axios.get(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/view/${_id}`)
     .then( res => {
       // console.log("isi res: ", res);
       if (res.status && res.status === 200) {

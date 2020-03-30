@@ -14,8 +14,8 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // axios.get("http://localhost:3000/api/stuff")
-    axios.get("https://tranquil-ridge-40313.herokuapp.com/api/stuff")
+    axios.get("http://localhost:3010/api/stuff")
+    // axios.get("https://tranquil-ridge-40313.herokuapp.com/api/stuff")
     .then( res => {
       if (res.status && res.status === 200) {
         // console.log('isi res.data: ', res.data);
@@ -28,7 +28,7 @@ class Home extends React.Component {
   render() {
     const datas = this.state.data;
     // console.log("isi datas: ", datas.length)
-    // console.log(datas);
+    console.log(datas);
 
     return (
       <div>
@@ -77,7 +77,7 @@ class Home extends React.Component {
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="ui container">
+        <div className="ui container" style={{marginTop: 50}}>
           <div className="ui centered cards">
             { 
               datas.length > 0 &&
@@ -90,7 +90,7 @@ class Home extends React.Component {
                       state: { _id: data._id }
                     }} 
                   >
-                    <div className="card" style={{ margin: '5px' }}>
+                    <div className="card" style={{ margin: '20px' }}>
                       <div className="image">
                         <img src={data.imageUrl} alt={data.title} style={{ height: '270px', width: '270px' }} />
                       </div>

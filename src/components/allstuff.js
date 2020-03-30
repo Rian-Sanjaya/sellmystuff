@@ -20,8 +20,8 @@ class AllStuff extends React.Component {
     const { shazam, userId } = authStorage;
     const authString = 'Bearer ' + shazam;
     
-    // axios.get("http://localhost:3000/api/stuff", {
-    axios.get("https://tranquil-ridge-40313.herokuapp.com/api/stuff", {
+    axios.get("http://localhost:3010/api/stuff", {
+    // axios.get("https://tranquil-ridge-40313.herokuapp.com/api/stuff", {
       headers: {
         Authorization: authString
       }

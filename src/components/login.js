@@ -51,8 +51,8 @@ class Login extends React.Component {
     }
     // console.log("isi data: ", data);
 
-    // axios.post("http://localhost:3000/api/auth/login", data)
-    axios.post("https://tranquil-ridge-40313.herokuapp.com/api/auth/login", data)
+    axios.post("http://localhost:3010/api/auth/login", data)
+    // axios.post("https://tranquil-ridge-40313.herokuapp.com/api/auth/login", data)
     .then( res => {
       if (res.status && res.status === 200) {
         // console.log(res);
