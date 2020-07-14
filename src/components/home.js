@@ -28,7 +28,7 @@ class Home extends React.Component {
   render() {
     const datas = this.state.data;
     // console.log("isi datas: ", datas.length)
-    console.log(datas);
+    // console.log(datas);
 
     return (
       <div>

@@ -77,7 +77,7 @@ class ModifyAThing extends React.Component {
     const authStorage = loadAuth();
     const { shazam, userId } = authStorage;
     const authString = 'Bearer ' + shazam;
-    debugger
+  
     const thing = {
       title: this.state.data.title,
       description: this.state.data.description,
@@ -90,6 +90,12 @@ class ModifyAThing extends React.Component {
     formData.append('thing', JSON.stringify(thing));
     formData.append('image', this.state.file);
 
+    // Display the key/value pairs
+    // for (var pair of formData.entries()) {
+    //   // console.log(pair[0]+ ', ' + pair[1]); 
+    //   console.log(pair[1])
+    // }
+
     axios.put(`http://localhost:3010/api/stuff/${this.state.data._id}`, formData, {
     // axios.put(`https://tranquil-ridge-40313.herokuapp.com/api/stuff/${this.state.data._id}`, formData, {
       headers: {
@@ -98,7 +104,7 @@ class ModifyAThing extends React.Component {
       }
     })
     .then( res => {
-      console.log("isi res: ", res);
+      // console.log("isi res: ", res);
       return this.props.history.push('/allStuff');
     })
     .catch( err => console.log(err) );

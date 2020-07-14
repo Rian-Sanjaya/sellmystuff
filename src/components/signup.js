@@ -42,6 +42,7 @@ class Signup extends React.Component {
 
     e.preventDefault();
 
+    // console.log(this.state.formData)
     const { email, password } = this.state.formData;
     const data = {
       email: email,

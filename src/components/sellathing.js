@@ -53,10 +53,10 @@ class SellAThing extends React.Component {
     formData.append('image', this.state.file);
 
     // Display the key/value pairs
-    for (var pair of formData.entries()) {
-      // console.log(pair[0]+ ', ' + pair[1]); 
-      console.log(pair[1])
-    }
+    // for (var pair of formData.entries()) {
+    //   // console.log(pair[0]+ ', ' + pair[1]); 
+    //   console.log(pair[1])
+    // }
 
     axios.post('http://localhost:3010/api/stuff', formData, {
     // axios.post('https://tranquil-ridge-40313.herokuapp.com/api/stuff', formData, {
@@ -69,7 +69,7 @@ class SellAThing extends React.Component {
       }
     })
     .then( res => {
-      console.log("isi res: ", res);
+      // console.log("isi res: ", res);
       return this.props.history.push('/allStuff');
     })
     .catch( err => console.log(err) );
@@ -93,8 +93,8 @@ class SellAThing extends React.Component {
 
   render() {
     const { data, imagePreviewUrl } = this.state;
-    console.log(imagePreviewUrl)
-    console.log(this.state.file)
+    // console.log(imagePreviewUrl)
+    // console.log(this.state.file)
     let $imagePreview = null;
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} alt='' style={{ maxWidth: '100%', height: 'auto' }} />);
